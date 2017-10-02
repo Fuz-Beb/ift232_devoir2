@@ -93,7 +93,4 @@ public class MusicLog implements MediaLog {
         
         return true;
     }
-	
-	
-
 }

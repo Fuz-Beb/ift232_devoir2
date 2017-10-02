@@ -85,11 +85,14 @@ ArrayList<LogEntry> entries;
             if (other.entries != null)
                 return false;
         }
-        else if (!entries.equals(other.entries))
+        else if(entries.size() != other.entries.size())
             return false;
+        
+        for(int boucle = 0; boucle < entries.size(); boucle++) {
+            if(!(entries.get(boucle).toString().equals(other.entries.get(boucle).toString())))
+                return false;
+        }
+        
         return true;
     }
-
-	
-
 }

@@ -1,7 +1,7 @@
 package banalytics;
 
 /*
- * Interface générale pour un journal.
+ * Interface gï¿½nï¿½rale pour un journal.
  */
 
 public interface MediaLog {
@@ -14,4 +14,5 @@ public interface MediaLog {
 	public void closeBufferingEntry(long time);
 	public void addMoveEntry(long pos);
 	public String toString();
+	public boolean equals(Object obj);
 }
