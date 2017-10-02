@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import banalytics.Banalyser;
+import banalytics.ExceptionDevoir2;
 import banalytics.Media;
 
 /**
@@ -17,142 +18,199 @@ import banalytics.Media;
  */
 public class BanalyserUnit
 {
-    Media music1;
-    Media music2;
-    Media video1;
-    Media video2;
-    Media video3;
-    Media video4;
-    Banalyser musicAnalyser1;
-    Banalyser musicAnalyser2;
-    Banalyser videoAnalyser1;
-    Banalyser videoAnalyser2;
-    Banalyser videoAnalyser3;
-    Banalyser videoAnalyser4;
-    
-    /**
-     * @throws java.lang.Exception
-     */
+    Media music, video;
+    Banalyser analyser1, analyser2;
+
     @Before
-    public void setUp() throws Exception
+    public void setUp1()
     {
-        // Musique 1
-        music1 = new Media("The Space Explorers", "Big Falcon Rocket", ".mp3",180000);
-        
-        musicAnalyser1 = new Banalyser(music1);
-        
-        musicAnalyser1.start(0);
-        musicAnalyser1.pause(30000);
-        musicAnalyser1.resume(10000);
-        musicAnalyser1.move(102000);
-        musicAnalyser1.resume(1000);
-        musicAnalyser1.buffer(150000);
-        musicAnalyser1.resume(5000);
-        musicAnalyser1.stop(180000);
-        
-        // Musique 2
-        music2 = new Media("The Space Explorers", "Big Falcon Rocket", ".mp3",180000);
-        
-        musicAnalyser2 = new Banalyser(music2);
-        
-        musicAnalyser2.start(0);
-        musicAnalyser2.pause(30000);
-        musicAnalyser2.resume(10000);
-        musicAnalyser2.move(102000);
-        musicAnalyser2.resume(1000);
-        musicAnalyser2.buffer(150000);
-        musicAnalyser2.resume(5000);
-        musicAnalyser2.stop(180000);
-        
-        // DEBUT - Objet 3
-        
-        video1 = new Media("ESA Channel", "The Beagle hasn't landed", ".mov",953000);
-        videoAnalyser1 = new Banalyser(video1);
-        
-        // Génération des entries
-        videoAnalyser1.start(0);
-        videoAnalyser1.buffer(5000);
-        videoAnalyser1.resume(60000);
-        videoAnalyser1.pause(30000); 
-        videoAnalyser1.resume(105000);
-        videoAnalyser1.move(570000);     
-        videoAnalyser1.resume(1000);
-        videoAnalyser1.stop(900000);
-                
-        System.out.println(videoAnalyser1.getTextLog());
-        
-        // FIN - Objet 3
-        
-        // DEBUT - Objet 4
-        
-        video2 = new Media("ESA Channel", "The Beagle hasn't landed", ".mov",953000);
-        videoAnalyser2 = new Banalyser(video2);
-        
-        videoAnalyser2.start(0);
-        videoAnalyser2.buffer(5000);
-        videoAnalyser2.resume(60000);
-        videoAnalyser2.pause(30000); 
-        videoAnalyser2.resume(105000);
-        videoAnalyser2.move(570000);
-        videoAnalyser2.resume(1000);
-        videoAnalyser2.stop(900000);
-                
-        System.out.println(videoAnalyser2.getTextLog());
-        
-        // FIN - Objet 4
-        
-        // DEBUT - Object 5
-        
-        video3 = new Media("Remy Channel", "The Framakey", ".mov",953000);
-        videoAnalyser3 = new Banalyser(video3);
-        
-        videoAnalyser3.start(0);
-        videoAnalyser3.buffer(5000);
-        videoAnalyser3.resume(10000);
-        videoAnalyser3.move(70000);
-        videoAnalyser3.resume(1000);
-        videoAnalyser3.pause(100000);
-        videoAnalyser3.resume(2000);
-        videoAnalyser3.stop(140000);
-        
-        System.out.println(videoAnalyser3.getTextLog());
-        
-        // FIN - Object 5
-        
-        // DEBUT - Object 6
-        
-        video4 = new Media("Remy Channel", "The Framakey", ".mov",953000);
-        videoAnalyser4 = new Banalyser(video4);
-        
-        videoAnalyser4.start(0);
-        videoAnalyser4.buffer(5000);
-        videoAnalyser4.resume(10000);
-        videoAnalyser4.move(70000);
-        videoAnalyser4.resume(1000);
-        videoAnalyser4.pause(100000);
-        videoAnalyser4.resume(2000);
-        videoAnalyser4.stop(140000);
-        
-        System.out.println(videoAnalyser4.getTextLog());
-        
-        // FIN - Object 6
+        music = new Media("The Space Explorers", "Big Falcon Rocket", ".mp3", 180000);
+
+        analyser1 = new Banalyser(music);
+
+        analyser1.start(0);
+        analyser1.pause(30000);
+        analyser1.resume(10000);
+        analyser1.move(102000);
+        analyser1.resume(1000);
+        analyser1.buffer(150000);
+        analyser1.resume(5000);
+        analyser1.stop(180000);
+
+        analyser2 = new Banalyser(music);
+
+        analyser2.start(0);
+        analyser2.pause(30000);
+        analyser2.resume(10000);
+        analyser2.move(102000);
+        analyser2.resume(1000);
+        analyser2.buffer(150000);
+        analyser2.resume(5000);
+        analyser2.stop(180000);
     }
 
+    /**
+     * Test de la methode equals de la classe Banalyser avec une music
+     */
     @Test
     public void testMusic()
     {
-        assertTrue(musicAnalyser1.equals(musicAnalyser2));
+        assertTrue(analyser1.equals(analyser2));
     }
-    
+
+    @Before
+    public void setUp2()
+    {
+        video = new Media("ESA Channel", "The Beagle hasn't landed", ".mov", 953000);
+
+        analyser1 = new Banalyser(video);
+
+        analyser1.start(0);
+        analyser1.buffer(5000);
+        analyser1.resume(60000);
+        analyser1.pause(30000);
+        analyser1.resume(105000);
+        analyser1.move(570000);
+        analyser1.resume(1000);
+        analyser1.stop(900000);
+
+        analyser2 = new Banalyser(video);
+
+        analyser2.start(0);
+        analyser2.buffer(5000);
+        analyser2.resume(60000);
+        analyser2.pause(30000);
+        analyser2.resume(105000);
+        analyser2.move(570000);
+        analyser2.resume(1000);
+        analyser2.stop(900000);
+    }
+
+    /**
+     * Test de la methode equals de la classe Banalyser avec une video
+     */
     @Test
     public void testVideo()
     {
-        assertTrue(videoAnalyser1.equals(videoAnalyser2));
+        assertTrue(analyser1.equals(analyser2));
     }
-    
+
+    @Before
+    public void setUp3()
+    {
+        video = new Media("Remy Channel", "The Framakey", ".mov", 953000);
+        analyser1 = new Banalyser(video);
+
+        analyser1.start(0);
+        analyser1.buffer(5000);
+        analyser1.resume(10000);
+        analyser1.move(70000);
+        analyser1.resume(1000);
+        analyser1.pause(100000);
+        analyser1.resume(2000);
+        analyser1.stop(140000);
+
+        analyser2 = new Banalyser(video);
+
+        analyser2.start(0);
+        analyser2.buffer(5000);
+        analyser2.resume(10000);
+        analyser2.move(70000);
+        analyser2.resume(1000);
+        analyser2.pause(100000);
+        analyser2.resume(2000);
+        analyser2.stop(140000);
+    }
+
+    /**
+     * Test de la classe equals avec une autre sequence d'evenement
+     */
     @Test
     public void testVideo2()
     {
-        assertTrue(videoAnalyser3.equals(videoAnalyser4));
+        assertTrue(analyser1.equals(analyser2));
+    }
+
+    @Before
+    public void setUp4()
+    {
+        video = new Media("Remy Channel", "The Framakey", ".mov", 953000);
+        analyser1 = new Banalyser(video);
+
+        analyser1.start(0);
+        analyser1.pause(100000);
+    }
+
+    /**
+     * Interdiction de mettre deux fois un etat a PAUSED de manière séquentielle
+     */
+    @Test(expected = ExceptionDevoir2.class)
+    public void testVideoSituationAnormale1()
+    {
+        analyser1.buffer(5000);
+    }
+
+    @Before
+    public void setUp5()
+    {
+        video = new Media("Remy Channel", "The Framakey", ".mov", 953000);
+        analyser1 = new Banalyser(video);
+
+        analyser1.start(0);
+        analyser1.buffer(5000);
+        analyser1.resume(1000);
+    }
+
+    /**
+     * Interdiction de mettre deux fois un etat a PLAYING de manière
+     * séquentielle
+     */
+    @Test(expected = ExceptionDevoir2.class)
+    public void testVideoSituationAnormale2()
+    {
+        analyser1.resume(1000);
+    }
+
+    @Before
+    public void setUp6()
+    {
+        video = new Media("Remy Channel", "The Framakey", ".mov", 953000);
+        analyser1 = new Banalyser(video);
+
+        analyser1.start(0);
+        analyser1.buffer(1000);
+        analyser1.resume(1000);
+        analyser1.buffer(1000);
+
+    }
+
+    /**
+     * Interdiction de mettre deux fois un etat a PAUSED de manière séquentielle
+     */
+    @Test(expected = ExceptionDevoir2.class)
+    public void testVideoSituationAnormale3()
+    {
+        analyser1.buffer(1000);
+    }
+
+    @Before
+    public void setUp7()
+    {
+        video = new Media("Remy Channel", "The Framakey", ".mov", 953000);
+        analyser1 = new Banalyser(video);
+
+        analyser1.start(0);
+        analyser1.stop(1000);
+
+    }
+
+    /**
+     * Interdiction de mettre deux fois un etat a STOPPED de manière
+     * séquentielle
+     */
+    @Test(expected = ExceptionDevoir2.class)
+    public void testVideoSituationAnormale4()
+    {
+        analyser1.stop(2000);
     }
 }
