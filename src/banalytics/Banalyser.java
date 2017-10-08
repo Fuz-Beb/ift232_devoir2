@@ -60,7 +60,7 @@ public class Banalyser
         }
         else if (etat == STOPPED)
         {
-            
+
             if (type == Media.MUSIC)
             {
                 log.openPlaySegment(position);
@@ -74,7 +74,7 @@ public class Banalyser
         }
         else
         {
-            
+
             throw new ExceptionDevoir2("Seul l'etat INITIAL et STOPPED sont acceptes dans un start()");
         }
 
